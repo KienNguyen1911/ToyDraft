@@ -8,10 +8,20 @@ use App\Models\Product;
 class PageController extends Controller
 {
     //
-    public function master() 
+    public function getIndex()
     {
-        //
-        $product = Product::all();  
-        return view('master', compact('product'));
+        $products = Product::all();
+        return view('index', ['products' => $products]);
     }
+
+    public function getDashboard()
+    {
+        return view('admin.dashboard');
+    }
+
+    public function getAdmin()
+    {
+        return view('admin.admin');
+    }
+
 }

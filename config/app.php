@@ -195,6 +195,15 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        // 'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
     ])->toArray(),
+
+    // 'providers' => [
+    //     // Other service providers...
+    
+    //     RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+    // ],
+    
 
 ];

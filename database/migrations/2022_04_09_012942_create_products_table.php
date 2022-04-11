@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('productdescription');
             $table->string('productprice');
             $table->string('productimage');
+            // $table->string('category_id');            
+            $table->unsignedBigInteger('category_id');	
+            $table->foreign('category_id') -> references('id') -> on('category');
             $table->timestamps();
         });
     }

@@ -1,0 +1,23 @@
+.accordion-button{
+    color: #54667A !important;
+    padding: 16px 27px !important;
+}
+
+.scroll-sidebar .sidebar-link{
+    text-decoration: none;
+}
+
+.accordion-body .list-group{
+    padding-left: 30px;
+}
+.accordion-body .list-item{
+    text-decoration: none;
+    color: gray;
+    font-weight: 300;
+}
+.accordion-body .list-item:hover{
+    color: #2F323E !important;
+}
+.accordion-item{
+    border: none !important;	
+}
