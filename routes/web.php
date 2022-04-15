@@ -19,7 +19,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('404page');
 });
 
 
@@ -57,13 +57,13 @@ Route::get('/edituser/{id}', [UserController::class, 'editUser'])-> name('editUs
 Route::post('/edituser/{id}', [UserController::class, 'updateUser'])-> name('updateUser');
 Route::get('/deleteuser/{id}', [UserController::class, 'deleteUser'])-> name('deleteUser');
 
-Route::get('/login', [UserController::class, 'login'])-> name('login');
+Route::get('/login', [UserController::class, 'getLogin'])-> name('login');
 Route::post('/login', [UserController::class, 'postLogin'])-> name('postLogin');
 Route::get('/logout', [UserController::class, 'logout'])-> name('logout');
 Route::get('/register', [UserController::class, 'register'])-> name('register');
 Route::post('/register', [UserController::class, 'postRegister'])-> name('postRegister');
 
 // session
-Route::group(['middleware' => ['web']], function(){
+// Route::group(['middleware' => ['web']], function(){
     // Route
-});
+// });

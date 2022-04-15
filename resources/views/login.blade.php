@@ -90,41 +90,41 @@
   
           <div class="card bg-glass">
             <div class="card-body px-4 py-5 px-md-5">
-              <form method="POST">
+              <form method="POST"  role="form">
                 @csrf
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                    <input type="email" id="form3Example3" class="form-control" name="email" />
-                    <label class="form-label" for="form3Example3"  >Email address</label>
-                </div>
+                  <!-- Email input -->
+                  <div class="form-outline mb-4">
+                      <input type="text" id="form3Example3" class="form-control" name="username" />
+                      <label class="form-label" for="form3Example3">Username</label>
+                  </div>
   
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                    <input type="password" id="form3Example4" class="form-control" name="password"/>
-                    <label class="form-label" for="form3Example4">Password</label>
-                </div>
+                  <!-- Password input -->
+                  <div class="form-outline mb-4">
+                      <input type="password" id="form3Example4" class="form-control" name="password"/>
+                      <label class="form-label" for="form3Example4">Password</label>
+                  </div>
   
-                <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-center mb-4">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                  <label class="form-check-label" for="form2Example33">
-                    Subscribe to our newsletter
-                  </label>
-                </div>
+                  <!-- Checkbox -->
+                  <div class="form-check d-flex justify-content-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                    <label class="form-check-label" for="form2Example33">
+                      Subscribe to our newsletter
+                    </label>
+                  </div>
   
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">
-                  Sign up
-                </button>
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Log in
+                  </button>
   
-                <!-- Register buttons -->
-                <a class="small text-muted" href="#!">Forgot password?</a>
-                <p class="mb-5 pb-lg-2" style="color: #393f81;" >Don't have an account? 
-                  <a href="{{route('register')}}" style="color: #393f81;">Register here</a>
-                </p>
+                  <!-- Register buttons -->
+                  <a class="small text-muted" href="#!">Forgot password?</a>
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;" >Don't have an account? 
+                    <a href="{{route('register')}}" style="color: #4a57e7;">Register here</a>
+                  </p>
                  
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
           </div>
         </div>

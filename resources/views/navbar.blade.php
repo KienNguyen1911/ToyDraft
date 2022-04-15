@@ -25,17 +25,37 @@
                 <li><a class="dropdown-item" href="#">Toys for Girl</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
+                {{-- <li><i class="fa-solid fa-cart-circle-check"></i></li> --}}
               </ul>
             </li>
+            
           </ul>
           <form class="d-flex" style="margin: 10px">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success me-2" type="submit">Search</button>
+            <button class="btn btn-outline-success " style="margin-right: 6px" >
+              Cart
+            </button>
+            @if (Auth::check() == 'user')
+              <div class="btn-group">
+                  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ Auth::user()->username }}
+                  </button>
+                  <div class="dropdown-menu" style="top:40px; left:-62px">
+                    <a class="dropdown-item" href="#">Log out</a>
+                    <a class="dropdown-item" href="#">View Profile</a>
+                    <a class="dropdown-item" href="#">View Cart</a>
+                    <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
+                    
+                    {{-- <div class="dropdown-divider"></div> --}}
+                    {{-- <a class="dropdown-item" href="#">Separated link</a> --}}
+                  </div>
+              </div>
+            @else
             <button class="btn btn-outline-primary">
               <a href="{{route('login')}}" class="login">Login</a> 
             </button>
+            @endif
           </form>
-
         </div>
       </div>
     </nav>

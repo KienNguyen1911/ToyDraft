@@ -27,4 +27,5 @@
         <input type="text" class="form-control" id="" placeholder="Enter Role" name="role" value="{{ $user->role }}">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 @endsection

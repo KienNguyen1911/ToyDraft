@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
 use Hash;
-use Alert;
+// use Alert;
 class UserController extends Controller
 {
     //
@@ -23,18 +23,6 @@ class UserController extends Controller
         return view('register');
     }
     
-    // public function postRegister(Request $request)
-    // {
-    //     $user = new User;
-    //     $user->username = $request->username;
-    //     $user->fullname = $request->fullname;
-    //     $user->email = $request->email;
-    //     $user->phonenumber = $request->phonenumber;
-    //     $user->password = $request->password;
-    //     $user->role = $request->role;
-    //     $user->save();
-    //     return redirect() -> route('showUser');
-    // }
     
     public function editUser($id)
     {
@@ -48,7 +36,7 @@ class UserController extends Controller
         $user->fullname = $request->fullname;
         $user->email = $request->email;
         $user->phonenumber = $request->phonenumber;
-        $user->password = $request->password;
+        $user->password = Hash::make('password');
         $user->role = $request->role;
         $user->save();
         return redirect() -> route('showUser');
@@ -61,20 +49,18 @@ class UserController extends Controller
         return redirect('/showUser');
     }
 
-    public function login()
+    public function getLogin()
     {
         return view('login');
     }
 
     public function postLogin(Request $request)
     {
-        $arr = ['email' => $request->email, 'password' => $request->password];
+        $arr = ['username' => $request->username, 'password' => $request->password];
         if(Auth::attempt($arr)) {
-            
+            $success = 'Login success';
             if(Auth::user()->role == 'admin') {
-                $success = 'Login successfully ';
-                alert()->success('Post Created', 'Successfully');
-                return redirect()->route('dashboard')->with('success', $success) ;
+                return redirect()->route('dashboard');
             } else {
                 return redirect()->route('index');
             }
@@ -86,7 +72,8 @@ class UserController extends Controller
 
     public function logout()
     {
-        return redirect()->route('index');
+        Auth::logout();
+        return redirect()->route('login');
     }
 
     public function register() 
