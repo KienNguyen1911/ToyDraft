@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 09, 2022 lúc 04:37 AM
+-- Thời gian đã tạo: Th4 15, 2022 lúc 05:25 PM
 -- Phiên bản máy phục vụ: 10.4.19-MariaDB
 -- Phiên bản PHP: 8.0.6
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `toystore`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `category`
+--
+
+CREATE TABLE `category` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `categoryname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categorydescription` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `category`
+--
+
+INSERT INTO `category` (`id`, `categoryname`, `categorydescription`, `created_at`, `updated_at`) VALUES
+(1, 'Robot', 'No more', NULL, NULL),
+(3, 'Doll', 'for girl', NULL, NULL),
+(4, 'Accessories', 'asdf', NULL, NULL),
+(5, 'STEAM', 'science and history', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -54,11 +78,12 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2022_04_09_012942_create_products_table', 1);
+(32, '2014_10_12_000000_create_users_table', 1),
+(33, '2014_10_12_100000_create_password_resets_table', 1),
+(34, '2019_08_19_000000_create_failed_jobs_table', 1),
+(35, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(36, '2022_04_08_184431_create_category_table', 1),
+(37, '2022_04_09_012942_create_products_table', 1);
 
 -- --------------------------------------------------------
 
@@ -103,6 +128,7 @@ CREATE TABLE `products` (
   `productdescription` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `productprice` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `productimage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -111,8 +137,17 @@ CREATE TABLE `products` (
 -- Đang đổ dữ liệu cho bảng `products`
 --
 
-INSERT INTO `products` (`id`, `productname`, `productcode`, `productdescription`, `productprice`, `productimage`, `created_at`, `updated_at`) VALUES
-(2, 'Lego angrybird', 'LG1', 'nothing', '120000', '1649470439_download.jfif', '2022-04-08 19:13:59', '2022-04-08 19:13:59');
+INSERT INTO `products` (`id`, `productname`, `productcode`, `productdescription`, `productprice`, `productimage`, `category_id`, `created_at`, `updated_at`) VALUES
+(1, 'Iron Man Model', 'IR1', 'Aisss', '250000', '1649585309_iron man.jpg', 1, '2022-04-10 03:08:29', '2022-04-10 03:08:29'),
+(2, 'Petals Princess', 'PP1', 'Princess Petals is a Pegasus pop star from Zephyr Heights. The 15cm tall figure has soft purple hair and grace is the note. Star Princess Petals hums part of her hit song from the movie, \"Glowing Up!\" Press her Cutie Mark to make her hum', '180000', '1649660478_f1796_1_.jpg', 3, '2022-04-11 00:01:18', '2022-04-11 00:01:18'),
+(3, 'Accessories Toys', 'AT1', 'Nah Nah', '124000', '1650019233_kidtoycha.jpg', 3, '2022-04-15 03:40:33', '2022-04-15 03:40:33'),
+(4, 'Among Us Toy', 'AU1', 'yellow', '25000', '1650019619_among-us.jpg', 4, '2022-04-15 03:46:59', '2022-04-15 03:46:59'),
+(5, 'LOL Tweens', 'LT1', 'for girl', '540000', '1650019701_lol-tweens.jpg', 3, '2022-04-15 03:48:21', '2022-04-15 03:48:21'),
+(6, 'Daphne Minton', 'DM1', 'beautifull', '450000', '1650020140_daphne minton.jpg', 3, '2022-04-15 03:55:40', '2022-04-15 03:55:40'),
+(7, 'X-Force Helicopter', 'HF1', 'Can be fly', '670000', '1650020517_Helicopter.jpg', 1, '2022-04-15 04:01:57', '2022-04-15 04:01:57'),
+(8, 'Doggy Robot', 'DR2', 'Dog animal', '850000', '1650020656_Dog Robot.jpg', 1, '2022-04-15 04:04:16', '2022-04-15 04:04:16'),
+(9, 'Robot Cypher', 'DC1', 'lorem ispum', '590000', '1650020691_Robot Cypher.png', 1, '2022-04-15 04:04:51', '2022-04-15 04:04:51'),
+(10, 'Dinasaur Skelecton', 'DS1', 'Adventure and learn history', '960000', '1650020893_dinasaur skelecton.jpg', 5, '2022-04-15 04:08:13', '2022-04-15 04:08:13');
 
 -- --------------------------------------------------------
 
@@ -122,18 +157,36 @@ INSERT INTO `products` (`id`, `productname`, `productcode`, `productdescription`
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fullname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phonenumber` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `fullname`, `phonenumber`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
+(2, 'kiennd19', 'kiennd@gmail.com', '$2y$10$bcQ/LDqOvplEyZctbYH5leXZb6adScz/OFCxmHEWRQ4.rVmox1fl6', 'Kien Nguyen', '0912341234', 'admin', NULL, '2022-04-10 08:14:40', '2022-04-12 21:17:12'),
+(3, 'lamkhanh', 'khanhln@gmai.com', '$2y$10$GrPLTyKM6Qff9.YWXH6.TunwY0G/c3waYdvwZ6QiGhNgt29ttVbwi', 'Lam Khanh', '0981234123', 'user', NULL, '2022-04-10 08:36:22', '2022-04-10 08:36:22'),
+(5, 'hello', 'hello@gmail.com', 'hello', 'Hello', '0981234098', 'user', NULL, '2022-04-12 10:53:03', '2022-04-12 11:04:55'),
+(6, 'admin', 'admin@gmail.com', '$2y$10$KobkrO9NH5UP1pY5lmQyBuuExk7y0ZmPab5TfgBu69CIn1X0YKNjW', 'Mr.admin', '08123456789', 'admin', NULL, NULL, NULL);
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `failed_jobs`
@@ -166,7 +219,8 @@ ALTER TABLE `personal_access_tokens`
 -- Chỉ mục cho bảng `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `products_category_id_foreign` (`category_id`);
 
 --
 -- Chỉ mục cho bảng `users`
@@ -180,6 +234,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT cho bảng `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -189,7 +249,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `personal_access_tokens`
@@ -201,13 +261,23 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
